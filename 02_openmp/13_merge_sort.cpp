@@ -1,6 +1,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <vector>
+#include <omp.h>
 
 void merge(std::vector<int>& vec, int begin, int mid, int end) {
   std::vector<int> tmp(end-begin+1);
@@ -39,7 +40,9 @@ int main() {
     vec[i] = rand() % (10 * n);
     printf("%d ",vec[i]);
   }
+#pragma omp parallel 
   printf("\n");
+#pragma omp single 
   merge_sort(vec, 0, n-1);
   for (int i=0; i<n; i++) {
     printf("%d ",vec[i]);
