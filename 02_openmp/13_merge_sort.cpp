@@ -40,12 +40,20 @@ int main() {
     vec[i] = rand() % (10 * n);
     printf("%d ",vec[i]);
   }
-#pragma omp parallel 
-  printf("\n");
-#pragma omp single 
-  merge_sort(vec, 0, n-1);
+  printf("\n"); 
+
+  #pragma omp parallel 
+  {
+    #pragma omp single 
+    {
+      merge_sort(vec, 0, n-1);
+    }
+  } 
+  
   for (int i=0; i<n; i++) {
     printf("%d ",vec[i]);
   }
   printf("\n");
+  
+  return 0;
 }
