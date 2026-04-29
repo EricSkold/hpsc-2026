@@ -44,7 +44,7 @@ int main() {
     __m512 fx_upd = _mm512_mul_ps(rx, _mm512_mul_ps(mvec, inv_r3));
     __m512 fy_upd = _mm512_mul_ps(ry, _mm512_mul_ps(mvec, inv_r3));
 
-    __mmask16 mask = _mm512_cmp_ps_mask(ivec, jvec, _MM_CMPINT_NEQ); 
+    __mmask16 mask = _mm512_cmp_ps_mask(ivec, jvec, _CMP_NEQ_OQ);
 
     fx_upd = _mm512_mask_blend_ps(mask, zero, fx_upd);
     fy_upd = _mm512_mask_blend_ps(mask, zero, fy_upd);
